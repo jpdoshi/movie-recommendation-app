@@ -4,9 +4,11 @@ import SearchIcon from "./toolbar/SearchIcon";
 interface Props {
   onPress?: () => void;
   placeholder: string;
+  onChangeText?: (text: string) => void;
+  value?: string;
 }
 
-const SearchBar = ({ onPress, placeholder }: Props) => {
+const SearchBar = ({ onPress, placeholder, onChangeText, value }: Props) => {
   return (
     <View
       style={{
@@ -19,11 +21,11 @@ const SearchBar = ({ onPress, placeholder }: Props) => {
       }}
     >
       <SearchIcon focused={true} size={18} />
-      <Pressable onPress={onPress}>
+      <Pressable onPress={onPress} className="flex-1">
         <TextInput
           placeholder={placeholder}
-          value=""
-          onChangeText={() => {}}
+          value={value}
+          onChangeText={onChangeText}
           placeholderTextColor="#ddd"
           className="flex-1 text-white"
         />

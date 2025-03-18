@@ -9,9 +9,13 @@ import {
 
 import images from "@/constants/images";
 import SearchBar from "@/components/SearchBar";
+
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+
 import MovieCard from "@/components/MovieCard";
 
 export default function Index() {
@@ -25,7 +29,30 @@ export default function Index() {
 
   return (
     <View className="flex-1 bg-primary">
-      <Image source={images.bgImage} className="absolute w-full z-0" />
+      {/* top gradient */}
+      <LinearGradient
+        colors={["#320606", "transparent"]}
+        style={{
+          position: "absolute",
+          top: 0,
+          height: 180,
+          width: "100%",
+          zIndex: 0,
+        }}
+      />
+
+      {/* bottom gradient */}
+      <LinearGradient
+        colors={["transparent", "#000"]}
+        style={{
+          position: "absolute",
+          bottom: 0,
+          height: 220,
+          width: "100%",
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
+      />
 
       <ScrollView
         className="flex-1 px-5"
@@ -53,7 +80,7 @@ export default function Index() {
               onPress={() => router.push("/search")}
             />
 
-            <Text className="text-lg text-white font-bold my-4">
+            <Text className="text-lg text-white font-bold mt-4 mb-2 ml-2">
               Popular Movies
             </Text>
 

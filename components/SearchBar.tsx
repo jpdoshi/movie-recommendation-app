@@ -1,13 +1,17 @@
-import { TextInput, View } from "react-native";
-import React from "react";
+import { Pressable, TextInput, View } from "react-native";
 import SearchIcon from "./toolbar/SearchIcon";
 
-const SearchBar = () => {
+interface Props {
+  onPress?: () => void;
+  placeholder: string;
+}
+
+const SearchBar = ({ onPress, placeholder }: Props) => {
   return (
     <View
       style={{
         flexDirection: "row",
-        backgroundColor: "rgba(24,24,24,0.5)",
+        backgroundColor: "rgba(140,140,140,0.15)",
         paddingHorizontal: 16,
         paddingVertical: 12,
         gap: 8,
@@ -15,14 +19,15 @@ const SearchBar = () => {
       }}
     >
       <SearchIcon focused={true} size={18} />
-      <TextInput
-        onPress={() => {}}
-        placeholder="Search"
-        value=""
-        onChangeText={() => {}}
-        placeholderTextColor="#666"
-        className="flex-1 text-white"
-      />
+      <Pressable onPress={onPress}>
+        <TextInput
+          placeholder={placeholder}
+          value=""
+          onChangeText={() => {}}
+          placeholderTextColor="#ddd"
+          className="flex-1 text-white"
+        />
+      </Pressable>
     </View>
   );
 };

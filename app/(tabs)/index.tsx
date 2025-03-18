@@ -1,12 +1,32 @@
-import { Image, ScrollView, View } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Image,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 
 import images from "@/constants/images";
 import SearchBar from "@/components/SearchBar";
+import { useRouter } from "expo-router";
+import useFetch from "@/services/useFetch";
+import { fetchMovies } from "@/services/api";
+import MovieCard from "@/components/MovieCard";
 
 export default function Index() {
+  const router = useRouter();
+
+  const {
+    data: movies,
+    loading: moviesLoading,
+    error: moviesError,
+  } = useFetch(() => fetchMovies({ query: "" }));
+
   return (
     <View className="flex-1 bg-primary">
       <Image source={images.bgImage} className="absolute w-full z-0" />
+
       <ScrollView
         className="flex-1 px-5"
         showsVerticalScrollIndicator={false}
@@ -18,10 +38,49 @@ export default function Index() {
         {/* icon */}
         <Image source={images.logo} className="w-12 h-12 mt-16 mb-4 mx-auto" />
 
-        {/* searchbar */}
-        <View className="flex-1">
-          <SearchBar />
-        </View>
+        {moviesLoading ? (
+          <ActivityIndicator
+            size="large"
+            color="#e53935"
+            className="mt-10 self-center"
+          />
+        ) : moviesError ? (
+          <Text>Error: {moviesError?.message}</Text>
+        ) : (
+          <View className="flex-1">
+            <SearchBar
+              placeholder="Search for movie"
+              onPress={() => router.push("/search")}
+            />
+
+            <Text className="text-lg text-white font-bold my-4">
+              Popular Movies
+            </Text>
+
+            <FlatList
+              data={movies}
+              renderItem={({ item }) => (
+                <MovieCard
+                  id={item.id}
+                  title={item.title}
+                  poster={item.poster_path}
+                  votes={item.vote_average}
+                  releaseDate={item.release_date}
+                />
+              )}
+              keyExtractor={(item) => item.id.toString()}
+              numColumns={2}
+              columnWrapperStyle={{
+                justifyContent: "center",
+                gap: 12,
+                paddingInline: 12,
+                marginBottom: 8,
+              }}
+              className="mt-1 pb-32"
+              scrollEnabled={false}
+            />
+          </View>
+        )}
       </ScrollView>
     </View>
   );

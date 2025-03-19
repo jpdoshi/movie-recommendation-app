@@ -7,10 +7,35 @@ export const TMDB_CONFIG = {
   },
 };
 
-export const fetchMovies = async ({ query }: { query: string }) => {
+const getDate = () => {
+  const today: Date = new Date();
+
+  const yyyy: number = today.getFullYear();
+  let mm: number | string = today.getMonth() + 1; // Months are zero-based
+  let dd: number | string = today.getDate();
+
+  if (mm < 10) mm = "0" + mm;
+  if (dd < 10) dd = "0" + dd;
+
+  return `${yyyy}-${mm}-${dd}`;
+};
+
+export const fetchMovies = async ({
+  query,
+  popular,
+}: {
+  query?: string;
+  popular?: boolean;
+}) => {
   const endpoint = query
-    ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(query)}`
-    : `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=vote_count.desc`;
+    ? `${TMDB_CONFIG.BASE_URL}/search/movie?query=${encodeURIComponent(
+        query
+      )}&sort_by=popularity.desc&include_adult=false&include_video=false`
+    : popular
+    ? `${TMDB_CONFIG.BASE_URL}/discover/movie?sort_by=popularity.desc&include_adult=false&include_video=false&without_genres=18`
+    : `${
+        TMDB_CONFIG.BASE_URL
+      }/discover/movie?sort_by=release_date.desc&include_adult=false&include_video=false&vote_count.gte=1000&release_date.lte=${getDate()}`;
 
   const response = await fetch(endpoint, {
     method: "GET",

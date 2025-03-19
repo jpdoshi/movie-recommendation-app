@@ -85,16 +85,17 @@ const search = () => {
                 poster={item.poster_path}
                 votes={item.vote_average}
                 releaseDate={item.release_date}
+                isSearch
               />
             ) : null
           }
           keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
+          numColumns={3}
           columnWrapperStyle={{
             justifyContent: "center",
-            gap: 12,
+            gap: 8,
             paddingInline: 12,
-            marginBottom: 8,
+            marginBottom: 16,
           }}
           ListEmptyComponent={
             !moviesLoading && !moviesError ? (

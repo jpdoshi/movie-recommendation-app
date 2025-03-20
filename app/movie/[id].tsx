@@ -19,8 +19,12 @@ import Svg, { G, Path } from "react-native-svg";
 
 const InfoBlock = ({ label, value }: any) => (
   <View className="px-5 flex-col items-start justify-center mt-4 mb-2">
-    <Text className="text-white font-semibold text-base">{label}</Text>
-    <Text className="text-white opacity-80 mt-1">{value || "N/A"}</Text>
+    <Text className="text-accent font-semibold text-lg tracking-normal">
+      {label}
+    </Text>
+    <Text className="text-white mt-1 tracking-normal leading-normal">
+      {value || "N/A"}
+    </Text>
   </View>
 );
 
@@ -52,12 +56,13 @@ const MovieDetails = () => {
           <SafeAreaView className="flex-1 z-50">
             <TouchableOpacity
               onPress={() => router.back()}
-              className="bg-[rgba(0,0,0,0.5)] absolute left-2 top-2 rounded-full p-1"
+              className="absolute left-4 top-14"
             >
               <Svg
-                height={32}
-                width={32}
-                className="translate-x-1 translate-y-1"
+                height={36}
+                width={36}
+                viewBox="0 0 32 32"
+                className="bg-[rgba(0,0,0,0.5)] rounded-full p-1"
               >
                 <G id="SVGRepo_iconCarrier">
                   <Path
@@ -72,7 +77,7 @@ const MovieDetails = () => {
             </TouchableOpacity>
           </SafeAreaView>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View className="w-full aspect-[9/12] relative">
+            <View className="w-full aspect-[9/13] relative">
               <Image
                 source={{
                   uri: movie?.poster_path
@@ -97,23 +102,23 @@ const MovieDetails = () => {
 
               <View className="absolute w-full left-0 bottom-0 p-5 pb-2 gap-1">
                 <Text
-                  className="text-white text-2xl font-bold"
+                  className="text-white text-3xl tracking-normal font-bold"
                   numberOfLines={1}
                 >
                   {movie?.title}
                 </Text>
-                <View className="flex-row gap-2">
-                  <Text className="text-white opacity-60 text-sm">
+                <View className="flex-row gap-4">
+                  <Text className="text-white">
                     {movie?.release_date && movie?.release_date.split("-")[0]}
                   </Text>
-                  <Text className="text-white opacity-60 text-sm">
+                  <Text className="text-white">
                     {movie?.runtime && movie?.runtime}m
                   </Text>
                   <View className="flex-row gap-1 items-center">
                     <StarIcon />
-                    <Text className="text-white text-sm opacity-60 tracking-wider">
+                    <Text className="text-white tracking-wide">
                       {movie?.vote_average > 0
-                        ? movie?.vote_average.toFixed(1)
+                        ? movie?.vote_average.toFixed(1) + "/10"
                         : "N/A"}
                     </Text>
                   </View>

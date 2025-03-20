@@ -34,7 +34,7 @@ const search = () => {
     <View className="flex-1 bg-primary">
       {/* top gradient */}
       <LinearGradient
-        colors={["#320606", "transparent"]}
+        colors={["rgba(183,28,28,0.5)", "transparent"]}
         style={{
           position: "absolute",
           top: 0,
@@ -63,6 +63,7 @@ const search = () => {
         <SearchBar
           placeholder="Search for movie"
           value={searchQuery}
+          onPress={() => {}}
           onChangeText={(text) => {
             setSearchQuery(text);
           }}
@@ -71,7 +72,7 @@ const search = () => {
         {searchQuery.trim() && (
           <Text className="text-lg text-white font-bold my-2 ml-2">
             Search Resuts for:{" "}
-            <Text className="text-[#ef9a9a]">{searchQuery.trim()}</Text>
+            <Text className="text-accent">{searchQuery.trim()}</Text>
           </Text>
         )}
 

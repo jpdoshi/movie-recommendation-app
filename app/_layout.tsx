@@ -1,17 +1,20 @@
 import React from "react";
 import { Stack } from "expo-router";
-import { StatusBar } from "react-native";
 
 import "./globals.css";
 
 export default function RootLayout() {
   return (
-    <>
-      <StatusBar barStyle={"light-content"} />
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="movie/[id]" options={{ headerShown: false }} />
-      </Stack>
-    </>
+    <Stack
+      screenOptions={{
+        navigationBarColor: "transparent",
+        statusBarBackgroundColor: "rgba(0,0,0,0.5)",
+        navigationBarTranslucent: true,
+        statusBarTranslucent: true,
+      }}
+    >
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="movie/[id]" options={{ headerShown: false }} />
+    </Stack>
   );
 }

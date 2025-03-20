@@ -24,6 +24,8 @@ const _Layout = () => {
           marginHorizontal: 20,
           marginBottom: 36,
           height: 60,
+          paddingTop: "auto",
+          paddingBottom: "auto",
           borderRadius: 48,
         },
       }}

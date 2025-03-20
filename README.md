@@ -1,50 +1,36 @@
-# Welcome to your Expo app 👋
+# Movie Recommendation App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform movie recommendation mobile app made using React native and Expo with free TMDB API. I used expo go app to create it live on my phone. You can check the screenshots in the image given below:
 
-## Get started
+<img src="https://github.com/jpdoshi/movie-recommendation-app/blob/main/showcase.png?raw=true" width="100%" loading="lazy" />
 
-1. Install dependencies
+This is my first mobile app that I learnt to make with react native expo project. I learned it from JSMastery youtube tutorial. The link of the tutorial is given <a href="https://www.youtube.com/watch?v=f8Z9JyB2EIE">here</a>.
 
-   ```bash
-   npm install
-   ```
+## Key Concepts
 
-2. Start the app
+Following are key concepts that I learned and implemented into this app
 
-   ```bash
-    npx expo start
-   ```
+- Reusable react components
+- File routes and folder structure
+- Navigation with expo Router
+- Setup nativewind for styling
+- Integrate REST API(TMDB)
+- Custom hook to fetch data
+- Using third-party node packages
+- Built-in react native & expo components
 
-In the output, you'll find options to open the app in a
+## Setup Project
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Open Terminal and enter following commands to setup project in your PC
 
 ```bash
-npm run reset-project
+# clone repo
+git clone https://github.com/jpdoshi/movie-recommendation-app.git
+
+# Install dependencies
+cd movie-recommendation-app
+npm install
+
+# Start server
+npm run start
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
